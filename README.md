@@ -8,9 +8,15 @@
 </div>
 
 
+                                                                                                                             
+                                                                                                                             
 This is a sample project of JGameLib for education.
+                                                                                                                             
+                                                                                                                             
 How to play this game :
+                                                                                                                             
  : Move Avatar using buttons to House.
+                                                                                                                             
 
 < Additional Infomation >
 
