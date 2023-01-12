@@ -27,14 +27,14 @@ public class MainActivity extends AppCompatActivity {
     private void initGame() {
         int m = grid.length, n = grid[0].length;
         gameLib.setScreenGrid(n,m);
-        for(int i=0; i < m; i++) {
-            for(int j=0; j < n; j++) {
+        for(int y=0; y < m; y++) {
+            for(int x=0; x < n; x++) {
                 int res = R.drawable.img_back;
-                switch(grid[i][j]) {
+                switch(grid[y][x]) {
                     case 1: res = R.drawable.img_block; break;
                     case 2 : res = R.drawable.img_house_empty; break;
                 }
-                gameLib.addCard(res, j, i, 1, 1);
+                gameLib.addCard(res, x, y, 1, 1);
             }
         }
         cardAvatar = gameLib.addCard(R.drawable.img_push_man, 0, 0, 1, 1);
