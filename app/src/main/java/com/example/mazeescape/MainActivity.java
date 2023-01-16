@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initGame() {
-        int m = grid.length, n = grid[0].length;
-        gameLib.setScreenGrid(n,m);
-        for(int y=0; y < m; y++) {
-            for(int x=0; x < n; x++) {
+        int rows = grid.length, cols = grid[0].length;
+        gameLib.setScreenGrid(cols,rows);
+        for(int y=0; y < rows; y++) {
+            for(int x=0; x < cols; x++) {
                 int res = R.drawable.img_back;
                 switch(grid[y][x]) {
                     case 1: res = R.drawable.img_block; break;
@@ -38,13 +38,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         cardAvatar = gameLib.addCard(R.drawable.img_push_man, 0, 0, 1, 1);
+        gameLib.playBGM(R.raw.morning);
     }
 
     // User Event start ====================================
 
     public void onBtn(View v) {
-        int left = (int)cardAvatar.dstRect.left;
-        int top = (int)cardAvatar.dstRect.top;
+        int left = (int)cardAvatar.screenRect().left;
+        int top = (int)cardAvatar.screenRect().top;
         switch(v.getId()) {
             case R.id.btnUp: {
                 if(top == 0 || grid[top-1][left] == 1) return;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         }
         cardAvatar.move(left, top);
         if(grid[top][left] == 2) {
+            gameLib.playAudioBeep(R.raw.trumpet_fanfare);
             gameLib.popupDialog(null, "You succeeded passing this maze.", "Close");
         }
     }
