@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 int res = R.drawable.img_back;
                 switch(grid[y][x]) {
                     case 1: res = R.drawable.img_block; break;
-                    case 2 : res = R.drawable.img_house_empty; break;
+                    case 2: res = R.drawable.img_house_empty; break;
                 }
                 gameLib.addCard(res, x, y, 1, 1);
             }
