@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         cardAvatar = gameLib.addCard(R.drawable.img_push_man, 0, 0, 1, 1);
-        gameLib.playBGM(R.raw.morning);
+        gameLib.playBGM(R.raw.motivational);
     }
 
     // User Event start ====================================
@@ -70,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
         }
         cardAvatar.move(left, top);
         if(grid[top][left] == 2) {
-            gameLib.playAudioBeep(R.raw.trumpet_fanfare);
+            gameLib.stopBGM();
+            gameLib.playAudioBeep(R.raw.winbanjo);
             gameLib.popupDialog(null, "You succeeded passing this maze.", "Close");
         }
     }
