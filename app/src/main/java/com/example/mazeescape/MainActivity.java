@@ -5,28 +5,28 @@ import android.os.Bundle;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
-    JGameLib gameLib = null;
-    JGameLib.Card cardAvatar = null;
+    Mosaic mosaic = null;
+    Mosaic.Card cardAvatar = null;
     int[][] grid = {{0,0,0,0,0},{1,1,1,1,0},{1,0,0,0,0},{0,1,1,1,0},{0,0,0,0,0},{0,1,0,1,1},{0,1,0,0,2}};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        gameLib = findViewById(R.id.gameLib);
+        mosaic = findViewById(R.id.mosaic);
         initGame();
     }
 
     @Override
     protected void onDestroy() {
-        if(gameLib != null)
-            gameLib.clearMemory();
+        if(mosaic != null)
+            mosaic.clearMemory();
         super.onDestroy();
     }
 
     private void initGame() {
         int rows = grid.length, cols = grid[0].length;
-        gameLib.setScreenGrid(cols,rows);
+        mosaic.setScreenGrid(cols,rows);
         for(int y=0; y < rows; y++) {
             for(int x=0; x < cols; x++) {
                 int res = R.drawable.img_back;
@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
                     case 1: res = R.drawable.img_block; break;
                     case 2: res = R.drawable.img_house_empty; break;
                 }
-                gameLib.addCard(res, x, y, 1, 1);
+                mosaic.addCard(res, x, y, 1, 1);
             }
         }
-        cardAvatar = gameLib.addCard(R.drawable.img_push_man, 0, 0, 1, 1);
-        gameLib.playBGM(R.raw.motivational);
+        cardAvatar = mosaic.addCard(R.drawable.img_push_man, 0, 0, 1, 1);
+        mosaic.playBGM(R.raw.motivational);
     }
 
     // User Event start ====================================
@@ -70,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
         }
         cardAvatar.move(left, top);
         if(grid[top][left] == 2) {
-            gameLib.stopBGM();
-            gameLib.playAudioBeep(R.raw.winbanjo);
-            gameLib.popupDialog(null, "You succeeded passing this maze.", "Close");
+            mosaic.stopBGM();
+            mosaic.playAudioBeep(R.raw.winbanjo);
+            mosaic.popupDialog(null, "You succeeded passing this maze.", "Close");
         }
     }
 
